@@ -22,7 +22,7 @@ jobs:
     needs: job1  # Ensure job2 runs after job1
     steps:
       - name: Cowsays Action
-        uses: peter-evans/cowsay@v1
+        uses: mscoutermarsh/cowsays-action@master
         with:
           message: ${{ env.MESSAGE }}
           color: magenta
