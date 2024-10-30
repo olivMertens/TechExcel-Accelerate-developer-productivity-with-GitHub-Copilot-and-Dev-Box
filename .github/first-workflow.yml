@@ -1,0 +1,28 @@
+name: First Workflow
+
+on:
+  workflow_dispatch:  # Manual trigger
+  issues:             # Trigger on issue creation
+
+env:
+  MESSAGE: "Ready for prod–ship it!"
+  STEP_MESSAGE: "Step 1 complete!"
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1
+        run: echo ${{ env.STEP_MESSAGE }}
+      - name: Step 2
+        run: echo "Step 2 complete!"
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1  # Ensure job2 runs after job1
+    steps:
+      - name: Cowsays Action
+        uses: peter-evans/cowsay@v1
+        with:
+          message: ${{ env.MESSAGE }}
+          color: magenta
